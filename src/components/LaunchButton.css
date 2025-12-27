@@ -1,0 +1,44 @@
+@reference "tailwindcss";
+.button-container {
+    /* 位置和大小 */
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
+.btn-base {
+    /* 布局 */
+    @apply relative inline-flex items-center justify-center;
+    
+    /* 文本样式 */
+    @apply text-white font-bold;
+    
+    /* 边框和圆角 */
+    @apply rounded-lg;
+    
+    /* 过渡和动画 */
+    @apply transition-all duration-300;
+    
+    /* 焦点状态 */
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.btn-lg {
+    /* 内边距和大小调整 */
+    @apply py-3 px-8;
+}
+
+.btn-primary {
+    /* 背景和渐变 */
+    @apply bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800;
+    
+    /* 阴影效果 */
+    @apply shadow-lg hover:shadow-xl;
+    
+    /* 交互效果 */
+    @apply transform hover:scale-105 active:scale-95;
+    
+    /* 焦点状态颜色 */
+    @apply focus:ring-blue-500;
+    
+    /* 禁用状态 */
+    @apply disabled:cursor-not-allowed disabled:opacity-70 disabled:from-gray-500 disabled:to-gray-600 disabled:hover:from-gray-500 disabled:hover:to-gray-600 disabled:transform-none disabled:hover:scale-100;
+}

@@ -1,0 +1,13 @@
+@reference "tailwindcss";
+
+.home-container {
+    @apply min-h-screen w-full flex bg-cover bg-center bg-no-repeat;
+}
+
+.home-left {
+    @apply w-3/4;
+}
+
+.home-right {
+    @apply w-1/4 flex flex-col justify-end pb-16 pr-16;
+}

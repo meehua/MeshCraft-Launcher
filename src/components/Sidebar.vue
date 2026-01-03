@@ -1,20 +1,70 @@
-<script setup>
-    
-</script>
-
 <template>
-    <div class="sidebar-container">
-        <div class="sidebar-left">
-            <div class="sidebar-item">
-                <div class="sidebar-icon">
-                    <img src="../assets/launcher.svg" alt="Launcher Icon">
+    <aside>
+        <div class="w-48 h-full bg-neutral-100 border-r border-neutral-200 flex flex-col">
+            <!-- LOGO 区域 -->
+            <div className="p-4 border-b border-neutral-200">
+                <div className="flex items-center gap-2">
+                    <div
+                        className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded flex items-center justify-center">
+                        <Network className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                        <div className="font-semibold text-neutral-900">MeshCraft</div>
+                        <div className="text-xs text-neutral-500">Launcher</div>
+                    </div>
                 </div>
-                <div class="sidebar-text">
-                    Launcher
+            </div>
+
+            <!-- 导航 -->
+            <nav class="flex-1 p-2">
+                <button v-for="item in navItems" :key="item.id" @click="() => onTabChange(item.id)" :class="[
+                    'w-full flex items-center gap-3 px-3 py-2 rounded-md mb-1 transition-colors',
+                    activeTab === item.id
+                        ? 'bg-blue-500 text-white'
+                        : 'text-neutral-700 hover:bg-neutral-200'
+                ]">
+                    <component :is="item.icon" class="w-4 h-4" />
+                    <span class="text-sm">{{ item.label }}</span>
+                </button>
+            </nav>
+
+            <!-- 用户信息 -->
+            <div class="p-3 border-t border-neutral-200">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-neutral-300 rounded-full flex items-center justify-center">
+                        <span class="text-xs text-neutral-600">U</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="text-sm text-neutral-900 truncate">User</div>
+                        <div class="text-xs text-neutral-500">v1.0.0</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </aside>
 </template>
+<script setup>
+import { ref, reactive } from 'vue';
+import { defineProps } from 'vue'
 
-<style scoped src="./Sidebar.css"></style>
+const props = defineProps({
+    navItems: {
+        type: Array,
+        required: true
+    },
+    activeTab: {
+        type: String,
+        required: true
+    },
+    onTabChange: {
+        type: Function,
+        required: true
+    }
+})
+// const navItems = reactive([
+//     { id: 'home', label: 'Home' },
+//     { id: 'servers', label: 'Servers' },
+//     { id: 'network', label: 'Network' },
+//     { id: 'settings', label: 'Settings' },
+// ]);
+</script>

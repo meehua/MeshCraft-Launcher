@@ -1,19 +1,9 @@
 <template>
-    <div class="home-container" :style="{ 'background-image': `url(${backgroundImage})` }">
-        <!-- 左侧预留空间 -->
-        <!-- <div class="home-left"></div> -->
-        <Login />
-        <!-- 右侧内容区域 -->
-        <!-- <div class="home-right"> -->
-            <LaunchButton />
-        <!-- </div> -->
-    </div>
+
 </template>
 <script setup>
-import LaunchButton from '../components/LaunchButton.vue'
-import Login from '../components/Login.vue'
-// import backgroundImage from '../assets/vue.svg'
-const backgroundImage = 'https://www.loliapi.com/acg/'
+// import backgroundImage from '../assets/xxxxx'
+// const backgroundImage = 'https://www.loliapi.com/acg/'
 </script>
 
 <style scoped src="./Home.css"></style>

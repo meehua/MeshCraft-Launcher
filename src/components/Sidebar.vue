@@ -17,16 +17,11 @@
 
             <!-- 导航 -->
             <nav class="flex-1 p-2">
-                <button v-for="item in navItems" :key="item.id" @click="() => setActiveTab(item.id)" :class="[
-                    'w-full flex items-center gap-3 px-3 py-2 rounded-md mb-1 transition-colors',
-                    activeTab === item.id
-                        ? 'bg-blue-500 text-white'
-                        : 'text-neutral-700 hover:bg-neutral-200'
-                ]">
-                    <!-- 动态生成 Iconify 图标 -->
+                <router-link v-for="item in navItems" :key="item.id" :to="item.path" active-class="nav-item-active"
+                    class="nav-item">
                     <span :class="`${item.icon} w-4 h-4`"></span>
                     <span class="text-sm">{{ item.label }}</span>
-                </button>
+                </router-link>
             </nav>
 
             <!-- 用户信息 -->
@@ -58,3 +53,21 @@ const { activeTab, navItems, currentTabLabel } = storeToRefs(navigationStore)
 // 直接使用 store 中的 action
 const { setActiveTab } = navigationStore
 </script>
+
+<style scoped>
+@reference "tailwindcss";
+
+.nav-item {
+    @apply w-full flex items-center gap-3 px-3 py-2 rounded-md mb-1 transition-colors text-neutral-700;
+}
+
+/* 不激活时的 hover 效果 */
+.nav-item:not(.nav-item-active):hover {
+    @apply bg-neutral-200;
+}
+
+/* 激活时的样式 - 无 hover 效果 */
+.nav-item-active {
+    @apply bg-blue-500 text-white;
+}
+</style>

@@ -1,36 +1,61 @@
 // stores/theme.ts
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { ref, computed } from 'vue'
+
+export type ThemeMode = 'system' | 'light' | 'dark'
 
 export const useThemeStore = defineStore('theme', () => {
-  const isDark = ref(false)
+    // 'system' 跟随系统 | 'light' 浅色 | 'dark' 深色
+    const mode = ref<ThemeMode>('system')
 
-  // 初始化主题
-  const initTheme = () => {
-    const saved = localStorage.getItem('theme')
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    
-    isDark.value = saved === 'dark' || (!saved && prefersDark)
-    applyTheme()
-  }
+    const prefersDark = () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 
-  // 切换主题
-  const toggleTheme = () => {
-    isDark.value = !isDark.value
-    applyTheme()
-  }
+    const isDark = computed(() => {
+        if (mode.value === 'dark') return true
+        if (mode.value === 'light') return false
+        return prefersDark()
+    })
 
-  // 应用主题到 HTML
-  const applyTheme = () => {
-    const html = document.documentElement
-    if (isDark.value) {
-      html.classList.add('dark')
-      localStorage.setItem('theme', 'dark')
-    } else {
-      html.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
+    // 将当前 mode 应用到 document，并记录到 localStorage
+    const applyTheme = () => {
+        const html = document.documentElement
+        if (isDark.value) html.classList.add('dark')
+        else html.classList.remove('dark')
+        // 始终保存当前选择（包括 'system'）以便下次启动能正确恢复
+        try {
+            localStorage.setItem('theme', mode.value)
+        } catch (e) {
+            /* ignore */
+        }
     }
-  }
 
-  return { isDark, toggleTheme, initTheme }
+    // 依次循环模式：system -> light -> dark -> system
+    const toggleTheme = () => {
+        mode.value = mode.value === 'system' ? 'light' : mode.value === 'light' ? 'dark' : 'system'
+        applyTheme()
+    }
+
+    // 初始化主题并监听系统主题变化（只有在 mode === 'system' 时会响应）
+    const initTheme = () => {
+        try {
+            const saved = localStorage.getItem('theme') as ThemeMode | null
+            if (saved === 'light' || saved === 'dark' || saved === 'system') mode.value = saved
+            else mode.value = 'system'
+        } catch (e) {
+            mode.value = 'system'
+        }
+
+        applyTheme()
+
+        // 监听系统主题变化
+        const mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
+        if (!mq) return
+        const handler = () => {
+            if (mode.value === 'system') applyTheme()
+        }
+        if (mq.addEventListener) mq.addEventListener('change', handler)
+        else if ((mq as any).addListener) (mq as any).addListener(handler)
+    }
+
+    return { mode, isDark, toggleTheme, initTheme, applyTheme }
 })

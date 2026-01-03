@@ -23,13 +23,12 @@
                 </router-link>
             </nav>
 
-            <!-- 主题切换按钮 -->
+            <!-- 主题切换按钮（3 模式：跟随系统 / 浅色 / 深色，点击切换到下一个） -->
             <div class="p-3 border-t border-neutral-200 dark:border-neutral-700">
-                <button @click="toggleTheme" class="flex items-center gap-2 w-full p-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
-                    <span v-if="isDark" class="icon-[lucide--sun] w-5 h-5 text-yellow-500"></span>
-                    <span v-else class="icon-[lucide--moon] w-5 h-5 text-blue-500"></span>
+                <button @click="toggleTheme" class="flex items-center gap-2 w-full p-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors" :title="modeLabel">
+                    <span :class="`${modeIcon} w-5 h-5 ${modeColorClass}`"></span>
                     <span class="text-sm text-neutral-700 dark:text-neutral-300">
-                        {{ isDark ? '浅色模式' : '深色模式' }}
+                        {{ modeLabel }}
                     </span>
                 </button>
             </div>
@@ -54,6 +53,7 @@
 import { useNavigationStore } from '@/stores/navigation'
 import { useThemeStore } from '@/stores/theme'
 import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
 
 const navigationStore = useNavigationStore()
 const themeStore = useThemeStore()
@@ -61,8 +61,12 @@ const themeStore = useThemeStore()
 const { activeTab, navItems, currentTabLabel } = storeToRefs(navigationStore)
 const { setActiveTab } = navigationStore
 
-const { isDark } = storeToRefs(themeStore)
+const { mode, isDark } = storeToRefs(themeStore)
 const { toggleTheme } = themeStore
+
+const modeLabel = computed(() => mode.value === 'system' ? 'Follow System' : mode.value === 'light' ? 'Light Mode' : 'Dark Mode')
+const modeIcon = computed(() => mode.value === 'system' ? 'icon-[lucide--sun-moon]' : mode.value === 'light' ? 'icon-[lucide--sun]' : 'icon-[lucide--moon]')
+const modeColorClass = computed(() => mode.value === 'system' ? 'text-neutral-700 dark:text-neutral-300' : mode.value === 'light' ? 'text-yellow-700' : 'text-blue-400')
 </script>
 
 <style scoped>

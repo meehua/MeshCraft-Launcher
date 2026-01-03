@@ -7,8 +7,6 @@ html {
   margin: 0;
   padding: 0;
 
-  /* 字体设置 */
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; */
   font-size: clamp(14px, 2vw, 18px);
   /* 动态字体大小 */
   line-height: 1.6;
@@ -16,10 +14,6 @@ html {
 
   /* 盒子模型 */
   box-sizing: border-box;
-
-  /* 背景和最小高度 */
-  background-color: #818181;
-  min-height: 100dvh;
 
   /* 文字渲染优化 */
   -webkit-font-smoothing: antialiased;

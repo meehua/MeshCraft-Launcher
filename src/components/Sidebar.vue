@@ -6,7 +6,7 @@
                 <div class="flex items-center gap-2">
                     <div
                         class="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded flex items-center justify-center">
-                        <Network class="w-5 h-5 text-white" />
+                        <span class="icon-[lucide--network] w-5 h-5 text-white"></span>
                     </div>
                     <div>
                         <div class="font-semibold text-neutral-900">MeshCraft</div>
@@ -23,7 +23,8 @@
                         ? 'bg-blue-500 text-white'
                         : 'text-neutral-700 hover:bg-neutral-200'
                 ]">
-                    <component :is="item.icon" class="w-4 h-4" />
+                    <!-- 动态生成 Iconify 图标 -->
+                    <span :class="`${item.icon} w-4 h-4`"></span>
                     <span class="text-sm">{{ item.label }}</span>
                 </button>
             </nav>
@@ -32,13 +33,11 @@
             <div class="p-3 border-t border-neutral-200">
                 <div class="flex items-center gap-2">
                     <div class="w-8 h-8 bg-neutral-300 rounded-full flex items-center justify-center">
-                        <span class="text-xs text-neutral-600">U</span>
+                        <span class="icon-[lucide--user] w-5 h-5 text-neutral-600"></span>
                     </div>
                     <div class="flex-1 min-w-0">
                         <div class="text-sm text-neutral-900 truncate">User</div>
-                        <div class="text-xs text-neutral-500">v1.0.0</div>
-                        <!-- 显示当前选中的标签页 -->
-                        <div class="text-xs text-neutral-400 mt-1">当前: {{ currentTabLabel }}</div>
+                        <div class="text-xs text-neutral-500">在线</div>
                     </div>
                 </div>
             </div>
@@ -58,7 +57,4 @@ const { activeTab, navItems, currentTabLabel } = storeToRefs(navigationStore)
 
 // 直接使用 store 中的 action
 const { setActiveTab } = navigationStore
-
-// 可以移除原来的 props 定义
-// const props = defineProps({ ... })
 </script>

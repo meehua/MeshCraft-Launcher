@@ -33,6 +33,9 @@ importers:
         specifier: ^4.6.4
         version: 4.6.4(vue@3.5.26(typescript@5.6.3))
     devDependencies:
+      '@iconify-json/lucide':
+        specifier: ^1.2.82
+        version: 1.2.82
       '@iconify/tailwind4':
         specifier: ^1.2.0
         version: 1.2.0(tailwindcss@4.1.18)
@@ -232,6 +235,9 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@iconify-json/lucide@1.2.82':
+    resolution: {integrity: sha512-fHZWegspOZonl5GNTvOkHsjnTMdSslFh3EzpzUtRyLxO8bOonqk2OTU3hCl0k4VXzViMjqpRK3X1sotnuBXkFA==}
 
   '@iconify/json@2.2.424':
     resolution: {integrity: sha512-Lxx8ad2DgyTGV88ec0mlaJ+OSjr0SyU0j8Awfbxl9JrxxHmBEFQJ+jywhztWAhLnaMUG3+G1htNJYzEsoAsNMQ==}
@@ -1095,6 +1101,10 @@ snapshots:
 
   '@esbuild/win32-x64@0.25.12':
     optional: true
+
+  '@iconify-json/lucide@1.2.82':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify/json@2.2.424':
     dependencies:

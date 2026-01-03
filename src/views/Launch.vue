@@ -6,4 +6,4 @@
 // const backgroundImage = 'https://www.loliapi.com/acg/'
 </script>
 
-<style scoped src="./Home.css"></style>
+<style scoped></style>

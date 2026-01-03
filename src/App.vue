@@ -7,7 +7,7 @@ import Sidebar from '@/components/Sidebar.vue';
 </script>
 
 <template>
-  <div class="h-dvh w-dvw flex bg-neutral-50">
+  <div class="h-dvh w-dvw flex bg-neutral-50 dark:bg-neutral-900">
   <Sidebar class="sidebar"/>
     <main class="main-container">
       <router-view />

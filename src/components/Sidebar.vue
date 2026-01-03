@@ -1,16 +1,15 @@
 <template>
     <aside>
-        <div class="w-48 h-full bg-neutral-100 border-r border-neutral-200 flex flex-col">
+        <div class="w-48 h-full bg-neutral-100 dark:bg-neutral-800 border-r border-neutral-200 dark:border-neutral-700 flex flex-col">
             <!-- LOGO 区域 -->
-            <div class="p-4 border-b border-neutral-200">
+            <div class="p-4 border-b border-neutral-200 dark:border-neutral-700">
                 <div class="flex items-center gap-2">
-                    <div
-                        class="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded flex items-center justify-center">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded flex items-center justify-center">
                         <span class="icon-[lucide--network] w-5 h-5 text-white"></span>
                     </div>
                     <div>
-                        <div class="font-semibold text-neutral-900">MeshCraft</div>
-                        <div class="text-xs text-neutral-500">Launcher</div>
+                        <div class="font-semibold text-neutral-900 dark:text-neutral-100">MeshCraft</div>
+                        <div class="text-xs text-neutral-500 dark:text-neutral-400">Launcher</div>
                     </div>
                 </div>
             </div>
@@ -24,15 +23,26 @@
                 </router-link>
             </nav>
 
+            <!-- 主题切换按钮 -->
+            <div class="p-3 border-t border-neutral-200 dark:border-neutral-700">
+                <button @click="toggleTheme" class="flex items-center gap-2 w-full p-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+                    <span v-if="isDark" class="icon-[lucide--sun] w-5 h-5 text-yellow-500"></span>
+                    <span v-else class="icon-[lucide--moon] w-5 h-5 text-blue-500"></span>
+                    <span class="text-sm text-neutral-700 dark:text-neutral-300">
+                        {{ isDark ? '浅色模式' : '深色模式' }}
+                    </span>
+                </button>
+            </div>
+
             <!-- 用户信息 -->
-            <div class="p-3 border-t border-neutral-200">
+            <div class="p-3 border-t border-neutral-200 dark:border-neutral-700">
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-neutral-300 rounded-full flex items-center justify-center">
-                        <span class="icon-[lucide--user] w-5 h-5 text-neutral-600"></span>
+                    <div class="w-8 h-8 bg-neutral-300 dark:bg-neutral-600 rounded-full flex items-center justify-center">
+                        <span class="icon-[lucide--user] w-5 h-5 text-neutral-600 dark:text-neutral-300"></span>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <div class="text-sm text-neutral-900 truncate">User</div>
-                        <div class="text-xs text-neutral-500">在线</div>
+                        <div class="text-sm text-neutral-900 dark:text-neutral-100 truncate">User</div>
+                        <div class="text-xs text-neutral-500 dark:text-neutral-400">Online</div>
                     </div>
                 </div>
             </div>
@@ -42,16 +52,17 @@
 
 <script setup>
 import { useNavigationStore } from '@/stores/navigation'
+import { useThemeStore } from '@/stores/theme'
 import { storeToRefs } from 'pinia'
 
-// 使用 Pinia store
 const navigationStore = useNavigationStore()
+const themeStore = useThemeStore()
 
-// 使用 storeToRefs 来保持响应式
 const { activeTab, navItems, currentTabLabel } = storeToRefs(navigationStore)
-
-// 直接使用 store 中的 action
 const { setActiveTab } = navigationStore
+
+const { isDark } = storeToRefs(themeStore)
+const { toggleTheme } = themeStore
 </script>
 
 <style scoped>
@@ -60,14 +71,24 @@ const { setActiveTab } = navigationStore
 .nav-item {
     @apply w-full flex items-center gap-3 px-3 py-2 rounded-md mb-1 transition-colors text-neutral-700;
 }
+.dark .nav-item {
+    @apply text-neutral-300;
+}
 
 /* 不激活时的 hover 效果 */
 .nav-item:not(.nav-item-active):hover {
     @apply bg-neutral-200;
 }
 
+.dark .nav-item:not(.nav-item-active):hover {
+    @apply bg-neutral-700;
+}
+
 /* 激活时的样式 - 无 hover 效果 */
 .nav-item-active {
     @apply bg-blue-500 text-white;
+}
+.dark .nav-item-active {
+    @apply dark:bg-blue-600;
 }
 </style>

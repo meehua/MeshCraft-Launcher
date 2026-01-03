@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@iconify/tailwind4";
+@custom-variant dark (&:where(.dark, .dark *));
 
 html {
   /* 重置基本样式 */

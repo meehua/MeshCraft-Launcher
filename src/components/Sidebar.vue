@@ -6,7 +6,7 @@
             <div class="p-4 border-b border-neutral-200 dark:border-neutral-700">
                 <div class="flex items-center gap-2">
                     <div
-                        class="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded flex items-center justify-center">
+                        class="w-8 h-8 bg-linear-to-br from-blue-500 to-indigo-600 rounded flex items-center justify-center">
                         <span class="icon-[lucide--network] w-5 h-5 text-white"></span>
                     </div>
                     <div>

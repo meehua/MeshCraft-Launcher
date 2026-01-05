@@ -1,15 +1,17 @@
 <template>
     <aside>
-        <div class="w-48 h-full bg-neutral-100 dark:bg-neutral-800 border-r border-neutral-200 dark:border-neutral-700 flex flex-col">
+        <div
+            class="w-48 h-full bg-neutral-100 dark:bg-neutral-800 border-r border-neutral-200 dark:border-neutral-700 flex flex-col">
             <!-- LOGO 区域 -->
             <div class="p-4 border-b border-neutral-200 dark:border-neutral-700">
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded flex items-center justify-center">
+                    <div
+                        class="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded flex items-center justify-center">
                         <span class="icon-[lucide--network] w-5 h-5 text-white"></span>
                     </div>
                     <div>
                         <div class="font-semibold text-neutral-900 dark:text-neutral-100">MeshCraft</div>
-                        <div class="text-xs text-neutral-500 dark:text-neutral-400">Launcher</div>
+                        <div class="text-xs text-neutral-500 dark:text-neutral-400 uppercase">Launcher</div>
                     </div>
                 </div>
             </div>
@@ -23,27 +25,32 @@
                 </router-link>
             </nav>
 
-            <!-- 主题切换按钮（3 模式：跟随系统 / 浅色 / 深色，点击切换到下一个） -->
-            <div class="p-3 border-t border-neutral-200 dark:border-neutral-700">
-                <button @click="toggleTheme" class="flex items-center gap-2 w-full p-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors" :title="modeLabel">
-                    <span :class="`${modeIcon} w-5 h-5 ${modeColorClass}`"></span>
-                    <span class="text-sm text-neutral-700 dark:text-neutral-300">
-                        {{ modeLabel }}
-                    </span>
-                </button>
-            </div>
+            <div class="p-3 border-t border-neutral-200 dark:border-neutral-700 gap-2 flex flex-col">
+                <!-- 主题切换按钮（3 模式：跟随系统 / 浅色 / 深色，点击切换到下一个） -->
+                <div class="">
+                    <button @click="toggleTheme"
+                        class="flex items-center gap-2 w-full p-2 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors cursor-pointer"
+                        :title="modeLabel">
+                        <span :class="`${modeIcon} w-4 h-4 ${modeColorClass}`"></span>
+                        <span class="text-xs text-neutral-600 dark:text-neutral-400">
+                            {{ modeLabel }}
+                        </span>
+                    </button>
+                </div>
 
-            <!-- 用户信息 -->
-            <div class="p-3 border-t border-neutral-200 dark:border-neutral-700">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-neutral-300 dark:bg-neutral-600 rounded-full flex items-center justify-center">
+                <!-- 用户信息 -->
+                <button
+                    class="gap-3 px-3 py-3 rounded-lg border border-inherit cursor-pointer flex items-center hover:bg-neutral-200 dark:hover:bg-neutral-700 transition hover:shadow-md">
+                    <div
+                        class="w-8 h-8 bg-neutral-300 dark:bg-neutral-600 rounded flex items-center justify-center overflow-hidden border border-border">
                         <span class="icon-[lucide--user] w-5 h-5 text-neutral-600 dark:text-neutral-300"></span>
                     </div>
-                    <div class="flex-1 min-w-0">
+                    <div class="flex-1 min-w-0 text-left">
                         <div class="text-sm text-neutral-900 dark:text-neutral-100 truncate">User</div>
                         <div class="text-xs text-neutral-500 dark:text-neutral-400">Online</div>
                     </div>
-                </div>
+
+                </button>
             </div>
         </div>
     </aside>
@@ -75,23 +82,25 @@ const modeColorClass = computed(() => mode.value === 'system' ? 'text-neutral-70
 .nav-item {
     @apply w-full flex items-center gap-3 px-3 py-2 rounded-md mb-1 transition-colors text-neutral-700;
 }
+
 .dark .nav-item {
     @apply text-neutral-300;
 }
 
 /* 不激活时的 hover 效果 */
 .nav-item:not(.nav-item-active):hover {
-    @apply bg-neutral-200;
+    @apply bg-neutral-200 text-black;
 }
 
 .dark .nav-item:not(.nav-item-active):hover {
-    @apply bg-neutral-700;
+    @apply bg-neutral-700 text-white;
 }
 
 /* 激活时的样式 - 无 hover 效果 */
 .nav-item-active {
-    @apply bg-blue-500 text-white;
+    @apply bg-blue-500 text-white font-bold;
 }
+
 .dark .nav-item-active {
     @apply dark:bg-blue-600;
 }

@@ -6,7 +6,9 @@
 export const ICONS = {
     HOME: 'icon-[lucide--home]',
     ROCKET: 'icon-[lucide--rocket]',
+    PLAY: 'icon-[lucide--play]',
     SERVER: 'icon-[lucide--server]',
+    LAYERS: 'icon-[lucide--layers]',
     NETWORK: 'icon-[lucide--network]',
     SETTINGS: 'icon-[lucide--settings]',
     USER: 'icon-[lucide--user]',

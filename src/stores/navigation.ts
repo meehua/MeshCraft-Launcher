@@ -11,14 +11,14 @@ export const useNavigationStore = defineStore('navigation', () => {
         {
             id: 'launch',
             label: 'Launch',
-            icon: ICONS.ROCKET,
+            icon: ICONS.PLAY,
             path: '/launch'  // 添加路由路径
         },
         {
-            id: 'servers',
-            label: 'Servers',
-            icon: ICONS.SERVER,
-            path: '/servers'  // 需要确保路由中有这个路径
+            id: 'resources',
+            label: 'Resources',
+            icon: ICONS.LAYERS,
+            path: '/resources'  // 需要确保路由中有这个路径
         },
         {
             id: 'network',

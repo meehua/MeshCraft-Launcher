@@ -25,6 +25,6 @@ import Sidebar from '@/components/Sidebar.vue';
 
 .main-container {
   /* @apply fixed min-h-dvh right-0 top-0 w-2/3 flex bg-cover bg-center bg-no-repeat; */
-  @apply flex-1;
+  @apply flex-1 overflow-auto;
 }
 </style>

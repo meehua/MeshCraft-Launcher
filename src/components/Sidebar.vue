@@ -17,7 +17,7 @@
             </div>
 
             <!-- 导航 -->
-            <nav class="flex-1 p-2">
+            <nav class="flex-1 p-2 overflow-y-auto">
                 <router-link v-for="item in navItems" :key="item.id" :to="item.path" active-class="nav-item-active"
                     class="nav-item">
                     <span :class="`${item.icon} w-4 h-4`"></span>
@@ -49,7 +49,6 @@
                         <div class="text-sm text-neutral-900 dark:text-neutral-100 truncate">User</div>
                         <div class="text-xs text-neutral-500 dark:text-neutral-400">Online</div>
                     </div>
-
                 </button>
             </div>
         </div>

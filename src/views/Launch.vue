@@ -4,8 +4,8 @@
         <img :src="backgroundImage" alt="" class="w-full h-full object-cover opacity-10 dark:opacity-20" />
     </div>
     <!-- 游戏信息 -->
-    <div class="pt-3 h-full relative">
-        <div class="p-6" w-full>
+    <div class="pt-2 h-full relative">
+        <div class="p-6" w-full h-full>
             <!-- 游戏卡片 -->
             <div class="relative rounded-lg shadow-lg overflow-hidden transition-all">
                 <!-- 背景层 -->
@@ -18,7 +18,7 @@
                 </div>
 
                 <!-- 游戏信息 -->
-                <div class="relative p-4 w-full">
+                <div class="relative p-4 w-full pt-16">
                     <!-- tags -->
 
                     <div class="flex items-center gap-3 mb-4"><span
@@ -51,6 +51,23 @@
                         </button>
                     </div>
                 </div>
+            </div>
+            <!-- 卡片列表 -->
+            <div class="pt-6 flex gap-6 overflow-x-auto pb-6 scrollbar-hide w-full h-42">
+                <!-- 卡片 -->
+                <button
+                    class="relative shrink-0 w-64 min-h-full rounded-lg shadow-lg overflow-hidden transition-all bg-white/10 backdrop-blur-md">
+                    <!-- 背景图片 -->
+                    <img src="https://www.loliapi.com/acg/" class="absolute inset-0 w-full h-full object-cover -z-1" />
+                    <!-- 遮罩 -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    <!-- 卡片内容 -->
+                    <div class="relative p-4 h-full w-full flex flex-col justify-end">
+                        <h2 class="text-lg font-bold mb-1 text-white">Card Title</h2>
+                        <p class="text-sm text-white/90">Card description goes here.</p>
+                    </div>
+                </button>
+
             </div>
         </div>
     </div>

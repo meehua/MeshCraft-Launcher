@@ -53,7 +53,9 @@
                 </div>
             </div>
             <!-- 卡片列表 -->
-            <div class="pt-6 flex gap-6 overflow-x-auto pb-6 scrollbar-hide w-full h-42">
+            <!-- 列表标题 -->
+            <h2 class="text-sm font-bold mt-3 text-black dark:text-white">Available Profiles</h2>
+            <div class="pt-2 flex gap-6 overflow-x-auto pb-6 scrollbar-hide w-full h-42">
                 <!-- 卡片 -->
                 <button
                     class="relative shrink-0 w-64 min-h-full rounded-lg shadow-lg overflow-hidden transition-all bg-white/10 backdrop-blur-md">

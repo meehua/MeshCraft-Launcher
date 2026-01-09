@@ -56,8 +56,8 @@
 </template>
 
 <script setup>
-import { useNavigationStore } from '@/stores/navigation'
-import { useThemeStore } from '@/stores/theme'
+import { useNavigationStore } from '@/stores/useNavigationStore'
+import { useThemeStore } from '@/stores/useThemeStore'
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 

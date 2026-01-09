@@ -10,7 +10,7 @@
             <div class="relative rounded-lg shadow-lg overflow-hidden transition-all">
                 <!-- 背景层 -->
                 <div class="absolute inset-0 pointer-events-none">
-                    <img :src="backgroundImage" alt="" class="w-full h-full object-cover" />
+                    <img :src="selectedInstance?.imageUrl" alt="" class="w-full h-full object-cover" />
                 </div>
 
                 <!-- 图片遮罩 -->
@@ -27,10 +27,8 @@
                         </span><span
                             class="px-2 py-1 bg-secondary/50 backdrop-blur-md border border-border/50 text-muted-foreground text-[10px] font-bold uppercase rounded">Mesh
                             Fabric 1.20.1</span></div>
-                    <h1 class="text-3xl font-bold mb-2">Mesh Official: Survival</h1>
-                    <p class="text-sm text-muted-foreground font-medium max-w-lg mb-8 line-clamp-2">
-                        Multiplayer survival experience on our high-performance mesh network with optimized latency.
-                    </p>
+                    <h1 class="text-3xl font-bold mb-2">{{ selectedInstance?.name }}</h1>
+                    <p class="text-sm text-muted-foreground font-medium max-w-lg mb-8 line-clamp-2">{{selectedInstance?.description}}</p>
                     <div class="flex items-center gap-4">
                         <!-- 主要按钮 -->
                         <button
@@ -58,15 +56,16 @@
             <div class="pt-2 flex gap-6 overflow-x-auto pb-6 scrollbar-hide w-full h-42">
                 <!-- 卡片 -->
                 <button
-                    class="relative shrink-0 w-64 min-h-full rounded-lg shadow-lg overflow-hidden transition-all bg-white/10 backdrop-blur-md">
+                    class="relative shrink-0 w-64 min-h-full rounded-lg shadow-lg overflow-hidden transition-all bg-white/10 backdrop-blur-md"
+                    v-for="instance in mcInstances" :key="instance.id" @click="selectInstance(instance.id)">
                     <!-- 背景图片 -->
-                    <img src="https://www.loliapi.com/acg/" class="absolute inset-0 w-full h-full object-cover -z-1" />
+                    <img :src="instance.imageUrl" class="absolute inset-0 w-full h-full object-cover -z-1" />
                     <!-- 遮罩 -->
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                     <!-- 卡片内容 -->
                     <div class="relative p-4 h-full w-full flex flex-col justify-end">
-                        <h2 class="text-lg font-bold mb-1 text-white">Card Title</h2>
-                        <p class="text-sm text-white/90">Card description goes here.</p>
+                        <h2 class="text-lg font-bold mb-1 text-white">{{ instance.name }}</h2>
+                        <p class="text-sm text-white/90">{{ instance.description }}</p>
                     </div>
                 </button>
 
@@ -76,7 +75,36 @@
 </template>
 
 <script setup>
-const backgroundImage = 'https://www.loliapi.com/acg/'
+import { computed, ref, watch,onMounted } from 'vue';
+import { useMCInstanceStore } from '@/stores/useMCInstanceStore';
+import { storeToRefs } from 'pinia';
+
+const mcInstanceStore = useMCInstanceStore();
+let { mcInstances, selectedInstanceId, selectedInstance } = storeToRefs(mcInstanceStore);
+
+
+const backgroundImage = ref('');
+
+const updateMainCard=() => {
+    backgroundImage.value = selectedInstance.value?.imageUrl || 'https://www.loliapi.com/acg/';
+}
+
+
+
+  // 监听 selectedInstance 变化并更新 ref
+  watch(selectedInstance,
+    (newValue) => {
+      updateMainCard();
+    },
+    { immediate: true } // 立即执行一次
+  );
+
+const selectInstance = (instanceId) => {
+    mcInstanceStore.setSelectedInstance(instanceId);
+};
+
+
+
 </script>
 
 <style scoped>

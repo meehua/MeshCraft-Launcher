@@ -1,4 +1,4 @@
-export const mcInstanceApi =
+export const MCInstanceApi =
     import.meta.env.VITE_USE_MOCK === 'true'
-        ? (await import('./MCInstance.mock')).mcInstanceApi
+        ? (await import('./MCInstance.mock')).MCInstanceApi
         : (await import('./MCInstance')).MCInstanceApi;

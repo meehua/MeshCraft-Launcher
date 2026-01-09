@@ -2,6 +2,15 @@ import type { MCInstance } from './MCInstance';
 
 export const mockInstances: MCInstance[] = [
     {
+        id: '0',
+        type: 'Modded',
+        name: 'Mesh Official: Survival',
+        description: 'AMultiplayer survival experience on our high-performance mesh network with optimized latency.',
+        version: '26.1',
+        imageUrl: 'https://esa-img.544521.xyz/i/pc/img519.webp',
+        userId: 'user999',
+    },
+    {
         id: '1',
         type: 'Vanilla',
         name: 'My First MC Instance',
@@ -48,8 +57,9 @@ export const mockInstances: MCInstance[] = [
     }
 ];
 
-export const mcInstanceApi = {
+export const MCInstanceApi = {
     async getInstances(): Promise<MCInstance[]> {
+        console.log("Fetching mock MC Instances...");
         return mockInstances;
     },
     async getInstanceById(id: string): Promise<MCInstance | null> {

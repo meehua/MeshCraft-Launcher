@@ -41,7 +41,7 @@ const route = useRoute();
 /* 路由切换动画 */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.1s ease;
+  transition: opacity 0.05s ease;
 }
 
 .fade-enter-from,

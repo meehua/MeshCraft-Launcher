@@ -3,7 +3,8 @@ import type { MCInstance } from './MCInstance';
 export const mockInstances: MCInstance[] = [
     {
         id: '0',
-        type: 'Modded',
+        type: 'server',
+        modLoader: 'vanilla',
         name: 'Mesh Official: Survival',
         description: 'AMultiplayer survival experience on our high-performance mesh network with optimized latency.',
         version: '26.1',
@@ -12,7 +13,8 @@ export const mockInstances: MCInstance[] = [
     },
     {
         id: '1',
-        type: 'Vanilla',
+        type: 'local',
+        modLoader: 'vanilla',
         name: 'My First MC Instance',
         description: 'A simple vanilla Minecraft instance',
         version: '1.16.5',
@@ -21,7 +23,8 @@ export const mockInstances: MCInstance[] = [
     },
     {
         id: '2',
-        type: 'Modded',
+        type: 'local',
+        modLoader: 'vanilla',
         name: 'Modded Adventure',
         description: 'An adventure-packed modded instance',
         version: '1.12.2',
@@ -30,7 +33,8 @@ export const mockInstances: MCInstance[] = [
     },
     {
         id: '3',
-        type: 'Forge',
+        type: 'local',
+        modLoader: 'vanilla',
         name: 'Forge Fun',
         description: 'A fun Forge-based Minecraft instance',
         version: '1.15.2',
@@ -39,7 +43,8 @@ export const mockInstances: MCInstance[] = [
     },
     {
         id: '4',
-        type: 'Fabric',
+        type: 'local',
+        modLoader: 'vanilla',
         name: 'Fabric Frenzy',
         description: 'A fast and lightweight Fabric instance',
         version: '1.17.1',
@@ -48,7 +53,8 @@ export const mockInstances: MCInstance[] = [
     },
     {
         id: '5',
-        type: 'Vanilla',
+        type: 'local',
+        modLoader: 'vanilla',
         name: 'Vanilla Survival',
         description: 'A vanilla survival Minecraft instance',
         version: '1.20.4',

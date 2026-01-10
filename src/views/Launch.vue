@@ -19,16 +19,13 @@
 
                 <!-- 游戏信息 -->
                 <div class="relative p-4 w-full pt-16">
-                    <!-- tags -->
-
-                    <div class="flex items-center gap-3 mb-4"><span
-                            class="px-2 py-1 bg-green-500/10 text-green-400 border border-green-500/20 text-[10px] font-bold uppercase rounded flex items-center gap-1.5">
-                            <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>Official Server
-                        </span><span
-                            class="px-2 py-1 bg-secondary/50 backdrop-blur-md border border-border/50 text-muted-foreground text-[10px] font-bold uppercase rounded">Mesh
-                            Fabric 1.20.1</span></div>
+                    <!-- badges -->
+                    <div class="flex items-center gap-3 mb-4">
+                        <MetadataBadge v-for="badge in badgeList" :key="badge.text" :type="badge.type" :text="badge.text" />
+                    </div>
                     <h1 class="text-3xl font-bold mb-2">{{ selectedInstance?.name }}</h1>
-                    <p class="text-sm text-muted-foreground font-medium max-w-lg mb-8 line-clamp-2">{{selectedInstance?.description}}</p>
+                    <p class="text-sm text-muted-foreground font-medium max-w-lg mb-8 line-clamp-2">
+                        {{ selectedInstance?.description }}</p>
                     <div class="flex items-center gap-4">
                         <!-- 主要按钮 -->
                         <button
@@ -74,8 +71,9 @@
     </div>
 </template>
 
-<script setup>
-import { computed, ref, watch,onMounted } from 'vue';
+<script setup lang="ts">
+import MetadataBadge from '@/components/MetadataBadge.vue';
+import { computed, ref, watch, onMounted } from 'vue';
 import { useMCInstanceStore } from '@/stores/useMCInstanceStore';
 import { storeToRefs } from 'pinia';
 
@@ -84,25 +82,45 @@ let { mcInstances, selectedInstanceId, selectedInstance } = storeToRefs(mcInstan
 
 
 const backgroundImage = ref('');
+const badgeList = ref<Array<{ type: string; text: string }>>([]);
 
-const updateMainCard=() => {
+const updateMainCard = () => {
     backgroundImage.value = selectedInstance.value?.imageUrl || 'https://www.loliapi.com/acg/';
+
+    // 徽章数组生成
+    badgeList.value = [];
+    if (selectedInstance.value?.type == "server") {
+        badgeList.value.push({
+            type: "server",
+            text: "SERVER"
+        });
+    } else {
+        badgeList.value.push({
+            type: "local",
+            text: "LOCAL"
+        });
+    }
+
+    if (selectedInstance.value?.version || selectedInstance.value?.modLoader) {
+        badgeList.value.push({
+            type: 'normal',
+            text: selectedInstance.value.modLoader +" " + selectedInstance.value.version
+        });
+    }
 }
 
 
-
-  // 监听 selectedInstance 变化并更新 ref
-  watch(selectedInstance,
+// 监听 selectedInstance 变化并更新 ref
+watch(selectedInstance,
     (newValue) => {
-      updateMainCard();
+        updateMainCard();
     },
     { immediate: true } // 立即执行一次
-  );
+);
 
 const selectInstance = (instanceId) => {
     mcInstanceStore.setSelectedInstance(instanceId);
 };
-
 
 
 </script>

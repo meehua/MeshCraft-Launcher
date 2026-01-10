@@ -1,6 +1,7 @@
 export interface MCInstance {
     id: string;
-    type: string;
+    type: "server" | "local";
+    modLoader: "vanilla" | "fabric" | "forge" | "neoforge" | "quilt";
     name: string;
     description?: string;
     version: string;

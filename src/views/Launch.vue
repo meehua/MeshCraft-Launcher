@@ -50,7 +50,7 @@
             <!-- 卡片列表 -->
             <!-- 列表标题 -->
             <h2 class="text-sm font-bold mt-3 text-black dark:text-white">Available Profiles</h2>
-            <div class="pt-2 flex gap-6 overflow-x-auto pb-6 scrollbar-hide w-full h-42">
+            <div class="pt-2 flex gap-6 pb-1  w-full h-42 overflow-x-scroll overscroll-contain scrollbar-custom">
                 <!-- 卡片 -->
                 <button
                     class="relative shrink-0 w-64 min-h-full rounded-lg shadow-lg overflow-hidden transition-all bg-white/10 backdrop-blur-md"
@@ -148,5 +148,11 @@ button:first-child::before {
 
 button:first-child:hover::before {
     opacity: 1;
+}
+
+/* 卡片列表滚动条 */
+.scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100, 100, 100, 0.5) transparent;
 }
 </style>

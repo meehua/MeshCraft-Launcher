@@ -17,7 +17,7 @@
                 <div class="absolute inset-0 bg-linear-to-b from-black/40 via-black/60 to-black/20 backdrop-blur-xs">
                 </div>
 
-                <!-- 游戏信息 -->
+                <!-- 主卡片信息 -->
                 <div class="relative p-4 w-full pt-16">
                     <!-- badges -->
                     <div class="flex items-center gap-3 mb-4">
@@ -50,7 +50,7 @@
             <!-- 卡片列表 -->
             <!-- 列表标题 -->
             <h2 class="text-sm font-bold mt-3 text-black dark:text-white">Available Profiles</h2>
-            <div class="pt-2 flex gap-6 pb-1  w-full h-42 overflow-x-scroll overscroll-contain scrollbar-custom">
+            <div class="pt-2 flex gap-2 pb-1  w-full h-full overflow-x-auto overscroll-contain scrollbar-custom">
                 <!-- 卡片 -->
                 <button
                     class="relative shrink-0 w-64 min-h-full rounded-lg shadow-lg overflow-hidden transition-all bg-white/10 backdrop-blur-md"
@@ -58,7 +58,7 @@
                     <!-- 背景图片 -->
                     <img :src="instance.imageUrl" class="absolute inset-0 w-full h-full object-cover -z-1" />
                     <!-- 遮罩 -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    <div class="absolute inset-0 bg-linear-to-t from-black/70 to-transparent"></div>
                     <!-- 卡片内容 -->
                     <div class="relative p-4 h-full w-full flex flex-col justify-end">
                         <h2 class="text-lg font-bold mb-1 text-white">{{ instance.name }}</h2>

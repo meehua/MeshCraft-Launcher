@@ -1,4 +1,4 @@
-import type { Resource } from './resource.ts';
+import type { Resource, ResourceTab } from './resource.ts';
 
 export const Resources: Resource[] = [
     {
@@ -24,7 +24,14 @@ export const Resources: Resource[] = [
         imageUrl: 'https://example.com/resource-pack-image.png',
         tags: ['example', 'resourcePack'],
     },
-];  
+];
+
+export const ResourceTabs: ResourceTab[] = [
+    { name: 'Clients', type: 'client' },
+    { name: 'Mods', type: 'mod' },
+    { name: 'Resource Packs', type: 'resourcePack' },
+    { name: 'Shaders', type: 'shaderPack' },
+];
 
 export const ResourceApi = {
     async getResources() {
@@ -36,4 +43,8 @@ export const ResourceApi = {
         const resource = Resources.find((res) => res.id === id);
         return resource || null;
     },
+    async getResourceTabs() {
+        // Return the mock resource tabs
+        return ResourceTabs;
+    }
 };

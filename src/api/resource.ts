@@ -7,6 +7,11 @@ interface ResourceMod {
     modLoader: "fabric" | "forge" | "neoforge" | "quilt";
 }
 
+export interface ResourceTab {
+    name: string;
+    type: "client" | "mod" | "resourcePack" | "shaderPack";
+}
+
 interface ResourceResourcePack {
 }
 
@@ -17,7 +22,7 @@ export interface Resource {
     id: string;
     version: Array<string>;
     name: string;
-    type: "client" | "mod" | "resourcePack" | "shaderPack";
+    type: ResourceTab['type'];
     info: ResourceClient | ResourceMod | ResourceResourcePack | ResourceShaderPack;
     description?: string;
     imageUrl?: string;
@@ -27,6 +32,7 @@ export interface Resource {
 export interface ResourceApi {
     getResources(): Promise<Resource[]>;
     getResourceById(id: string): Promise<Resource | null>;
+    getResourceTabs(): Promise<ResourceTab[]>
 }
 
 export const ResourceApi: ResourceApi = {
@@ -34,9 +40,13 @@ export const ResourceApi: ResourceApi = {
         // Implementation to fetch all resources
         return [];
     },
-    async getResourceById(id: string) {
-        // Implementation to fetch a resource by ID
+    async getResourceByType(type: ResourceTab['type']) {
+        // Implementation to fetch a resource by type
         return null;
     },
+    async getResourceTabs() {
+        // Implementation to fetch resource tabs
+        return [];
+    }
 };
 

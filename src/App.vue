@@ -14,7 +14,7 @@ const route = useRoute();
     <main class="main-container">
       <RouterView v-slot="{ Component }">
         <Transition name="fade" mode="default">
-          <div :key="route.fullPath">
+          <div :key="route.fullPath" class="transition-wrapper">
             <KeepAlive>
               <component :is="Component" />
             </KeepAlive>
@@ -36,12 +36,25 @@ const route = useRoute();
 .main-container {
   /* @apply fixed min-h-dvh right-0 top-0 w-2/3 flex bg-cover bg-center bg-no-repeat; */
   @apply flex-1 overflow-auto;
+
+  /* 确保内部元素使用absolute定位不会影响主要布局 */
+  position: relative;
+}
+
+.transition-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* 路由切换动画 */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.05s ease;
+  transition: opacity 0.2s ease;
 }
 
 .fade-enter-from,
